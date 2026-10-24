@@ -28,6 +28,11 @@ export function Setup() {
         start();
       }}
     >
+      <p className="text-muted">
+        Practice the memory palace technique. You get a random sequence of numbers or words and a time limit. Place
+        each item along a route you know well, then walk the route to recall them in order.
+      </p>
+
       <Field label="Mode">
         <Chips options={MODE_IDS} value={mode} onChange={(m) => setSettings({ mode: m })} format={(m) => MODES[m].label} />
       </Field>

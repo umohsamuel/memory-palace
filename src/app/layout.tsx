@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SITE } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,8 +14,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Memory Palace",
-  description: "Train the method of loci: memorize random sequences, then recall them in order.",
+  metadataBase: new URL(SITE.url),
+  title: { default: SITE.title, template: `%s | ${SITE.name}` },
+  description: SITE.description,
+  applicationName: SITE.name,
+  keywords: SITE.keywords,
+  category: "education",
+  alternates: { canonical: "/" },
+  // Stops iOS from turning memorized numbers into phone links.
+  formatDetection: { telephone: false },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: SITE.name,
+    title: SITE.title,
+    description: SITE.description,
+    locale: "en_GB",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.title,
+    description: SITE.description,
+  },
+  robots: { index: true, follow: true },
+  appleWebApp: { title: SITE.name, capable: true, statusBarStyle: "default" },
 };
 
 export const viewport: Viewport = {
